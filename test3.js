@@ -1,0 +1,168 @@
+const addMessage = document.querySelector(".message");
+const addButton = document.querySelector(".add");
+const todo = document.querySelector(".todo");
+const delAllButton = document.querySelector(".delete");
+let allTasks = document.querySelector(".result");
+
+// массив данных списка
+let todoList = [
+  {
+    todo: 'Добавить кнопку "Удалить все"',
+    checked: true,
+    important: true,
+    assignmentDate: "20.11.23",
+    performDate: "27.11.23",
+  },
+  {
+    todo: 'Добавить кнопку "Удалить одну задачу"',
+    checked: false,
+    important: true,
+    assignmentDate: "20.11.23",
+    performDate: "",
+  },
+  {
+    todo: 'Добавить переключатель "Отображать/скрывать исполненные поручения"',
+    checked: false,
+    important: true,
+    assignmentDate: "20.11.23",
+    performDate: "",
+  },
+  {
+    todo: 'Выводить информацию "Задач всего, из них исполнено"',
+    checked: false,
+    important: true,
+    assignmentDate: "20.11.23",
+    performDate: "",
+  },
+  {
+    todo: "Важные задачи (important) выделять визуально (или стилем текста или фоном или границей или др.)",
+    checked: true,
+    important: true,
+    assignmentDate: "20.11.23",
+    performDate: "",
+  },
+  {
+    todo: "Обеспечить возможность пометки задачи как важной",
+    checked: true,
+    important: true,
+    assignmentDate: "20.11.23",
+    performDate: "",
+  },
+  {
+    todo: 'Добавить кнопку "Редактировать", позволяющую изменить текст, важность и прочие параметры задачи',
+    checked: false,
+    important: true,
+    assignmentDate: "20.11.23",
+    performDate: "",
+  },
+  {
+    todo: 'Добавить поля "Дата постановки задачи", "Дата исполнения", отображать их, обеспечить заполнение при создании, при исполнении, чистку при снятии с исполнения',
+    checked: false,
+    important: true,
+    assignmentDate: "28.11.23",
+    performDate: "",
+  },
+  {
+    todo: "Увеличить ширину отображения задач",
+    checked: false,
+    important: false,
+    assignmentDate: "28.11.23",
+    performDate: "",
+  },
+  {
+    todo: "Обеспечить отображение задач при запуске сайта",
+    checked: false,
+    important: false,
+    assignmentDate: "28.11.23",
+    performDate: "",
+  },
+  {
+    todo: "Добавить параметр ТрудоёмкостьЗадачи, оценивать её по пятибальной системе",
+    checked: false,
+    important: true,
+    assignmentDate: "28.11.23",
+    performDate: "",
+  },
+
+  {
+    todo: "Реализовать вывод стат.отчёта, сколько задач в день закрывалось за отчетный период",
+    checked: false,
+    important: true,
+    assignmentDate: "",
+    performDate: "",
+  },
+  {
+    todo: "Вывести список задач в отдельный модуль, импортировать его из основного скрипта",
+    checked: false,
+    important: true,
+    assignmentDate: "28.11.23",
+    performDate: "",
+  },
+];
+
+displayElements();
+
+addButton.addEventListener("click", function () {
+  // Добавление задач в список по кнопке
+  if (!addMessage.value) return alert("Введите текст!!!"); // Ограничение пустого ввода
+  let newTodo = {
+    todo: addMessage.value,
+    checked: false,
+    important: false,
+    assignmentDate: "",
+    performDate: "",
+  };
+  todoList.push(newTodo);
+
+  displayElements();
+  addMessage.value = "";
+});
+
+function displayElements() {
+  let displayMessage = "";
+  todoList.forEach(function (item, i) {
+    displayMessage += `
+    <li>
+      <input type="checkbox" id="item_${i}" ${item.checked ? "checked" : ""}>
+      <label for="item_${i}" class='${item.important ? "important" : ""}'>${
+      item.todo
+    }
+    <button class="edit">edit</button>
+  <button class="delete-element">X
+  </button>
+      </label>
+    </li>
+    `;
+  });
+  todo.innerHTML = displayMessage;
+  let count = todoList.length;
+  allTasks.textContent = `Всего задач: ${count}`;
+}
+
+// При нажатии на элемент правой кнопкой мышки, помечается Важным
+todo.addEventListener("contextmenu", function (event) {
+  event.preventDefault();
+  todoList.forEach(function (item) {
+    if (item.todo === event.target.innerHTML) {
+      item.important = !item.important;
+      displayElements();
+    }
+  });
+});
+
+// Удаление задач
+delAllButton.addEventListener("click", function () {
+  todoList.splice(0, todoList.length);
+  allTasks.innerHTML = "Задач нет";
+  displayElements();
+});
+const editElementButton = document.querySelector(".edit");
+const delElementButton = document.querySelector(".delete-element");
+
+delElementButton.addEventListener("click", function (event) {
+  alert("sad");
+});
+
+editElementButton.addEventListener("click", (e) => {
+  alert("edit");
+});
