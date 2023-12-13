@@ -124,13 +124,10 @@ function displayElements() {
     displayMessage += `
     <li>
       <input type="checkbox" id="item_${i}" ${item.checked ? "checked" : ""}>
-      <label for="item_${i}" class='${item.important ? "important" : ""}'>${
-      item.todo
-    }
+      <label for="item_${i}" class='${item.important ? "important" : ""}'>${item.todo}</label>
+      
     <button class="edit">edit</button>
-  <button class="delete-element">X
-  </button>
-      </label>
+  <button class="delete-element">X</button>
     </li>
     `;
   });
