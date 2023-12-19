@@ -102,8 +102,27 @@ let todoList = [
 
 displayAllElements();
 
+function getTaskHTML(item, i) {
+  return `
+  <li>
+    <input type="checkbox" id="item_${i}" ${item.checked ? "checked" : ""}>
+    <label for="item_${i}" class='${item.important ? "important" : ""}'>
+      ${item.todo}
+    </label>
+    <button class="edit">edit</button>
+    <button class="delete-element">X</button>
+  </li>
+  `;
+}
+
 function addOneElement() {
-  todo.innerHTML = `<li> ${addMessage.value} </li>`;
+  const newItem = {
+    // Элемент задачи
+    todo: addMessage.value,
+    checked: false,
+    important: false,
+  };
+  todo.innerHTML += getTaskHTML(newItem);
 }
 
 addButton.addEventListener("click", function () {
