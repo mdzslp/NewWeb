@@ -102,20 +102,12 @@ let todoList = [
 
 displayAllElements();
 
-addButton.addEventListener("click", function () {
-  // Добавление задач в список по кнопке
-  if (!addMessage.value) return alert("Введите текст!!!"); // Ограничение пустого ввода
-  let newTodo = {
-    todo: addMessage.value,
-    checked: false,
-    important: false,
-    assignmentDate: "",
-    performDate: "",
-  };
-  todoList.push(newTodo);
+function addOneElement() {
+  todo.innerHTML = addMessage.value;
+}
 
-  displayAllElements();
-  addMessage.value = "";
+addButton.addEventListener("click", function () {
+  addOneElement();
 });
 
 function displayAllElements() {
