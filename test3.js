@@ -103,7 +103,7 @@ let todoList = [
 displayAllElements();
 
 function addOneElement() {
-  todo.innerHTML = addMessage.value;
+  todo.innerHTML = `<li> ${addMessage.value} </li>`;
 }
 
 addButton.addEventListener("click", function () {
