@@ -117,12 +117,32 @@ function getTaskHTML(item, i) {
 
 function addOneElement() {
   const newItem = {
-    // Элемент задачи
+    id: 1,
     todo: addMessage.value,
+    checked: false,
+    important: true,
+    assignmentDate: "",
+    performDate: "",
+  };
+  todoList.push(newItem);
+  todo.innerHTML += getTaskHTML(newItem, newItem.id);
+  addMessage.value = "";
+  displayAllElements();
+}
+
+function newTask(content) {
+  //сначала найдем максимальное значение id в maxId
+  let maxId = -1;
+  for (const item of todoList) {
+    if (item.id > maxId) maxId = item.id;
+  }
+  //возвратим новую задачу со сгенерированным id
+  return {
+    id: maxId + 1,
+    todo: content,
     checked: false,
     important: false,
   };
-  todo.innerHTML += getTaskHTML(newItem);
 }
 
 addButton.addEventListener("click", function () {
@@ -130,19 +150,12 @@ addButton.addEventListener("click", function () {
 });
 
 function displayAllElements() {
-  const displayMessage = todoList.map((item, i) => 
-      `
-      <li>
-      <input type="checkbox" id="item_${i}" ${item.checked ? "checked" : ""}>
-      <label for="item_${i}" class='${item.important ? "important" : ""}'>
-      ${item.todo}
-      </label>
-        <button class="edit">edit</button>
-        <button class="delete-element">X</button>
-    </li>
-    `
-    ).join("");
+  const displayMessage = todoList
+    .map((item, i) => getTaskHTML(item, i))
+    .join("");
+
   todo.innerHTML = displayMessage;
+
   const count = todoList.length;
   allTasks.textContent = `Всего задач: ${count}`;
 }
