@@ -115,11 +115,11 @@ let todoList = [
 
 displayAllElements();
 
-function getTaskHTML(item, i) {
+function getTaskHTML(item) {
   return `
   <li>
-    <input type="checkbox" id="item_${i}" ${item.checked ? "checked" : ""}>
-    <label for="item_${i}" class='${item.important ? "important" : ""}'>
+    <input type="checkbox" id="item_${item.id}" ${item.checked ? "checked" : ""}>
+    <label for="item_${item.id}" class='${item.important ? "important" : ""}'>
       ${item.todo}
     </label>
     <button class="edit">edit</button>
@@ -129,17 +129,11 @@ function getTaskHTML(item, i) {
 }
 
 function addOneElement() {
-  const newItem = {
-    id: 1,
-    todo: addMessage.value,
-    checked: false,
-    important: true,
-    assignmentDate: "",
-    performDate: "",
-  };
-  todoList.push(newItem);
-  todo.innerHTML += getTaskHTML(newItem, newItem.id);
+  const newTodo = newTask();
+  todoList.push(newTodo);
+  todo.innerHTML += getTaskHTML(newTodo);
   addMessage.value = "";
+
   const count = todoList.length;
   allTasks.textContent = `Всего задач: ${count}`;
 }
@@ -157,6 +151,8 @@ function newTask(content) {
     todo: content,
     checked: false,
     important: false,
+    assignmentDate: "",
+    performDate: "",
   };
 }
 
@@ -165,11 +161,7 @@ addButton.addEventListener("click", function () {
 });
 
 function displayAllElements() {
-  const displayMessage = todoList
-    .map((item, i) => getTaskHTML(item, i))
-    .join("");
-
-  todo.innerHTML;
+  todo.innerHTML = todoList.map(getTaskHTML).join("");
 }
 
 // При нажатии на элемент правой кнопкой мышки, помечается Важным
