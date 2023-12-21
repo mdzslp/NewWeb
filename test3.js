@@ -7,6 +7,7 @@ let allTasks = document.querySelector(".result");
 // массив данных списка
 let todoList = [
   {
+    id: 1,
     todo: 'Добавить кнопку "Удалить все"',
     checked: true,
     important: true,
@@ -14,6 +15,7 @@ let todoList = [
     performDate: "27.11.23",
   },
   {
+    id: 2,
     todo: 'Добавить кнопку "Удалить одну задачу"',
     checked: false,
     important: true,
@@ -21,6 +23,7 @@ let todoList = [
     performDate: "",
   },
   {
+    id: 3,
     todo: 'Добавить переключатель "Отображать/скрывать исполненные поручения"',
     checked: false,
     important: true,
@@ -28,6 +31,7 @@ let todoList = [
     performDate: "",
   },
   {
+    id: 4,
     todo: 'Выводить информацию "Задач всего, из них исполнено"',
     checked: false,
     important: true,
@@ -35,6 +39,7 @@ let todoList = [
     performDate: "",
   },
   {
+    id: 5,
     todo: "Важные задачи (important) выделять визуально (или стилем текста или фоном или границей или др.)",
     checked: true,
     important: true,
@@ -42,6 +47,7 @@ let todoList = [
     performDate: "",
   },
   {
+    id: 6,
     todo: "Обеспечить возможность пометки задачи как важной",
     checked: true,
     important: true,
@@ -49,6 +55,7 @@ let todoList = [
     performDate: "",
   },
   {
+    id: 7,
     todo: 'Добавить кнопку "Редактировать", позволяющую изменить текст, важность и прочие параметры задачи',
     checked: false,
     important: true,
@@ -56,6 +63,7 @@ let todoList = [
     performDate: "",
   },
   {
+    id: 8,
     todo: 'Добавить поля "Дата постановки задачи", "Дата исполнения", отображать их, обеспечить заполнение при создании, при исполнении, чистку при снятии с исполнения',
     checked: false,
     important: true,
@@ -63,6 +71,7 @@ let todoList = [
     performDate: "",
   },
   {
+    id: 9,
     todo: "Увеличить ширину отображения задач",
     checked: false,
     important: false,
@@ -70,6 +79,7 @@ let todoList = [
     performDate: "",
   },
   {
+    id: 10,
     todo: "Обеспечить отображение задач при запуске сайта",
     checked: false,
     important: false,
@@ -77,6 +87,7 @@ let todoList = [
     performDate: "",
   },
   {
+    id: 11,
     todo: "Добавить параметр ТрудоёмкостьЗадачи, оценивать её по пятибальной системе",
     checked: false,
     important: true,
@@ -85,6 +96,7 @@ let todoList = [
   },
 
   {
+    id: 12,
     todo: "Реализовать вывод стат.отчёта, сколько задач в день закрывалось за отчетный период",
     checked: false,
     important: true,
@@ -92,6 +104,7 @@ let todoList = [
     performDate: "",
   },
   {
+    id: 13,
     todo: "Вывести список задач в отдельный модуль, импортировать его из основного скрипта",
     checked: false,
     important: true,
