@@ -187,7 +187,7 @@ todo.addEventListener("contextmenu", function (event) {
 delAllButton.addEventListener("click", function () {
   todoList.splice(0, todoList.length);
   allTasks.innerHTML = "Задач нет";
-  displayAllElements();
+  todo.innerHTML = "";
 });
 const editElementButton = document.querySelector(".edit");
 const delElementButton = document.querySelector(".delete-element");
