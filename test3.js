@@ -140,8 +140,10 @@ function addOneElement() {
   todoList.push(newItem);
   todo.innerHTML += getTaskHTML(newItem, newItem.id);
   addMessage.value = "";
-  displayAllElements();
+  const count = todoList.length;
+  allTasks.textContent = `Всего задач: ${count}`;
 }
+
 
 function newTask(content) {
   //сначала найдем максимальное значение id в maxId
@@ -167,10 +169,7 @@ function displayAllElements() {
     .map((item, i) => getTaskHTML(item, i))
     .join("");
 
-  todo.innerHTML = displayMessage;
-
-  const count = todoList.length;
-  allTasks.textContent = `Всего задач: ${count}`;
+  todo.innerHTML;
 }
 
 // При нажатии на элемент правой кнопкой мышки, помечается Важным
