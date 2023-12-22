@@ -128,14 +128,18 @@ function getTaskHTML(item) {
   `;
 }
 
-function addOneElement() {
-  const newTodo = newTask();
+function renderTasksCount() {
+  const count = todoList.length;
+  allTasks.textContent = `Всего задач: ${count}`;
+}
+
+function addOneElement(content) {
+  const newTodo = newTask(content);
   todoList.push(newTodo);
   todo.innerHTML += getTaskHTML(newTodo);
   addMessage.value = "";
 
-  const count = todoList.length;
-  allTasks.textContent = `Всего задач: ${count}`;
+  renderTasksCount();
 }
 
 
@@ -156,12 +160,14 @@ function newTask(content) {
   };
 }
 
+
 addButton.addEventListener("click", function () {
   addOneElement();
 });
 
 function displayAllElements() {
   todo.innerHTML = todoList.map(getTaskHTML).join("");
+  renderTasksCount();
 }
 
 // При нажатии на элемент правой кнопкой мышки, помечается Важным
