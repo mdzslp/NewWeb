@@ -149,6 +149,7 @@ function newTask(content) {
   for (const item of todoList) {
     if (item.id > maxId) maxId = item.id;
   }
+  content = addMessage.value
   //возвратим новую задачу со сгенерированным id
   return {
     id: maxId + 1,
