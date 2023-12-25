@@ -143,7 +143,7 @@ function addOneElement(content) {
 }
 
 
-function newTask(content) {
+function newTask() {
   //сначала найдем максимальное значение id в maxId
   let maxId = -1;
   for (const item of todoList) {
