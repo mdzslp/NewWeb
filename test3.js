@@ -123,7 +123,7 @@ function getTaskHTML(item) {
       ${item.todo}
     </label>
     <button class="edit">edit</button>
-    <button class="delete-element">X</button>
+    <button class="delElement">X</button>
   </li>
   `;
 }
@@ -188,13 +188,17 @@ delAllButton.addEventListener("click", function () {
   allTasks.innerHTML = "Задач нет";
   todo.innerHTML = "";
 });
-const editElementButton = document.querySelector(".edit");
-const delElementButton = document.querySelector(".delete-element");
+const editElementButton = document.querySelectorAll(".edit");
+const delElementButton = document.querySelectorAll(".delElement");
 
-delElementButton.addEventListener("click", function (event) {
-  alert("sad");
+editElementButton.forEach(function (button) {
+  button.addEventListener("click", function () {
+    alert("EDIT");
+  });
 });
 
-editElementButton.addEventListener("click", (e) => {
-  alert("edit");
+delElementButton.forEach(function (button) {
+  button.addEventListener("click", function () {
+    alert("DELETE");
+  });
 });
