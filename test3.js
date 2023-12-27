@@ -122,8 +122,8 @@ function getTaskHTML(item) {
     <label for="item_${item.id}" class='${item.important ? "important" : ""}'>
       ${item.todo}
     </label>
-    <button class="edit">edit</button>
-    <button class="delElement">X</button>
+    <button class="edit" id="eb_${item.id}">Edit</button>
+    <button class="delElement" id="db_${item.id}">X</button>
   </li>
   `;
 }
@@ -138,7 +138,8 @@ function addOneElement(content) {
   todoList.push(newTodo);
   todo.innerHTML += getTaskHTML(newTodo);
   addMessage.value = "";
-
+  
+  attachEventButtons()
   renderTasksCount();
 }
 
@@ -168,6 +169,7 @@ addButton.addEventListener("click", function () {
 
 function displayAllElements() {
   todo.innerHTML = todoList.map(getTaskHTML).join("");
+  attachEventButtons();
   renderTasksCount();
 }
 
@@ -188,17 +190,19 @@ delAllButton.addEventListener("click", function () {
   allTasks.innerHTML = "Задач нет";
   todo.innerHTML = "";
 });
-const editElementButton = document.querySelectorAll(".edit");
-const delElementButton = document.querySelectorAll(".delElement");
 
-editElementButton.forEach(function (button) {
-  button.addEventListener("click", function () {
-    alert("EDIT");
-  });
-});
+function attachEventButtons() {
+  
+  todoList.forEach(function (item) {
+    const editButton = document.getElementById(`eb_${item.id}`);
+    const deleteButton = document.getElementById(`db_${item.id}`);
 
-delElementButton.forEach(function (button) {
-  button.addEventListener("click", function () {
-    alert("DELETE");
+    editButton.addEventListener("click", function () {
+      alert("EDIT");
+    });
+
+    deleteButton.addEventListener("click", function () {
+      alert("DELETE");
+    });
   });
-});
+}
