@@ -139,7 +139,18 @@ function addOneElement(content) {
   todo.innerHTML += getTaskHTML(newTodo);
   addMessage.value = "";
   
-  attachEventButtons()
+   todoList.forEach(function (item) {
+    const editButton = document.getElementById(`eb_${item.id}`);
+    const deleteButton = document.getElementById(`db_${item.id}`);
+
+    editButton.addEventListener("click", function () {
+      alert("EDIT!");
+    });
+
+    deleteButton.addEventListener("click", function () {
+      alert("DELETE!");
+    });
+  });
   renderTasksCount();
 }
 
@@ -168,8 +179,12 @@ addButton.addEventListener("click", function () {
 });
 
 function displayAllElements() {
-  todo.innerHTML = todoList.map(getTaskHTML).join("");
-  attachEventButtons();
+    todo.innerHTML = todoList.map(function (item) {
+      return getTaskHTML(item);
+    })
+    .join("");
+
+  
   renderTasksCount();
 }
 
@@ -191,18 +206,4 @@ delAllButton.addEventListener("click", function () {
   todo.innerHTML = "";
 });
 
-function attachEventButtons() {
-  
-  todoList.forEach(function (item) {
-    const editButton = document.getElementById(`eb_${item.id}`);
-    const deleteButton = document.getElementById(`db_${item.id}`);
 
-    editButton.addEventListener("click", function () {
-      alert("EDIT");
-    });
-
-    deleteButton.addEventListener("click", function () {
-      alert("DELETE");
-    });
-  });
-}
