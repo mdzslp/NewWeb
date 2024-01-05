@@ -135,22 +135,26 @@ function renderTasksCount() {
 
 function addOneElement(content) {
   const newTodo = newTask(content);
-  todoList.push(newTodo);
-  todo.innerHTML += getTaskHTML(newTodo);
+
+  const li = document.createElement("li");
+  li.innerHTML = getTaskHTML(newTodo);
+  todo.appendChild(li);
+
   addMessage.value = "";
-  
-   todoList.forEach(function (item) {
+
+  todoList.forEach(function (item) {
     const editButton = document.getElementById(`eb_${item.id}`);
     const deleteButton = document.getElementById(`db_${item.id}`);
 
-    editButton.addEventListener("click", function () {
+    editButton.onclick = (value) => {
       alert("EDIT!");
-    });
+    };
 
-    deleteButton.addEventListener("click", function () {
+    deleteButton.onclick = (value) => {
       alert("DELETE!");
-    });
+    };
   });
+
   renderTasksCount();
 }
 
