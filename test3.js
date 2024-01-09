@@ -117,14 +117,12 @@ displayAllElements();
 
 function getTaskHTML(item) {
   return `
-  <li>
     <input type="checkbox" id="item_${item.id}" ${item.checked ? "checked" : ""}>
     <label for="item_${item.id}" class='${item.important ? "important" : ""}'>
       ${item.todo}
     </label>
     <button class="edit" id="eb_${item.id}">Edit</button>
     <button class="delElement" id="db_${item.id}">X</button>
-  </li>
   `;
 }
 
@@ -135,16 +133,16 @@ function renderTasksCount() {
 
 function addOneElement(content) {
   const newTodo = newTask(content);
-
+  todoList.push(newTodo);
+  
   const li = document.createElement("li");
   li.innerHTML = getTaskHTML(newTodo);
   todo.appendChild(li);
 
   addMessage.value = "";
 
-  todoList.forEach(function (item) {
-    const editButton = document.getElementById(`eb_${item.id}`);
-    const deleteButton = document.getElementById(`db_${item.id}`);
+  const editButton = document.getElementById(`eb_${todoList.length}`);
+  const deleteButton = document.getElementById(`db_${todoList.length}`);
 
     editButton.onclick = (value) => {
       alert("EDIT!");
@@ -153,7 +151,6 @@ function addOneElement(content) {
     deleteButton.onclick = (value) => {
       alert("DELETE!");
     };
-  });
 
   renderTasksCount();
 }
