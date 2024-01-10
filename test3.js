@@ -149,6 +149,8 @@ function addOneElement(content) {
     };
 
     deleteButton.onclick = (value) => {
+      todoList.length--;
+      allTasks.textContent = `Всего задач: ${todoList.length}`;
       todo.removeChild(li);
     };
 
