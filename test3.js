@@ -141,15 +141,15 @@ function addOneElement(content) {
 
   addMessage.value = "";
 
-  const editButton = document.getElementById(`eb_${todoList.length}`);
-  const deleteButton = document.getElementById(`db_${todoList.length}`);
+  const editButton = document.getElementById(`eb_${todoList.length - 1}`);
+  const deleteButton = document.getElementById(`db_${todoList.length - 1}`);
 
     editButton.onclick = (value) => {
       alert("EDIT!");
     };
 
     deleteButton.onclick = (value) => {
-      alert("DELETE!");
+      todo.removeChild(li);
     };
 
   renderTasksCount();
