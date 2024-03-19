@@ -115,44 +115,51 @@ let todoList = [
 
 displayAllElements();
 
+
 function getTaskHTML(item) {
   return `
     <input type="checkbox" id="item_${item.id}" ${item.checked ? "checked" : ""}>
     <label for="item_${item.id}" class='${item.important ? "important" : ""}'>
-      ${item.todo}
+      ${item.todo} 
     </label>
     <button class="edit" id="eb_${item.id}">Edit</button>
-    <button class="delElement" id="db_${item.id}">X</button>
+    <button class="delElement" id="db_${item.id}"> X </button>
   `;
 }
 
 function renderTasksCount() {
   const count = todoList.length;
-  allTasks.textContent = `Всего задач: ${count}`;
+  allTasks.textContent = `Всего задач : ${count}`;
 }
 
-function addOneElement(content) {
-  const newTodo = newTask(content);
-  todoList.push(newTodo);
+
+
+
+function renderElement(item, id) {
   
   const li = document.createElement("li");
-  li.innerHTML = getTaskHTML(newTodo);
+  li.innerHTML = getTaskHTML(item);
   todo.appendChild(li);
 
   addMessage.value = "";
+ 
 
-  const editButton = document.getElementById(`eb_${todoList.length - 1}`);
-  const deleteButton = document.getElementById(`db_${todoList.length - 1}`);
+  const editButton = document.getElementById(`eb_${id}`);
+  const deleteButton = document.getElementById(`db_${id}`);
 
-    editButton.onclick = (value) => {
-      alert("EDIT!");
-    };
+  editButton.addEventListener('click', () => {
+    li.contentEditable = true // В разработке
+    
+  });
 
-    deleteButton.onclick = (value) => {
-      todoList.length--;
-      allTasks.textContent = `Всего задач: ${todoList.length}`;
-      todo.removeChild(li);
-    };
+  deleteButton.onclick = (value) => {
+    console.log("value", value)
+     todoList.length--;
+    allTasks.textContent = `Всего задач: ${todoList.length} `;
+    todo.removeChild(li);
+       todoList.splice();
+      
+  };
 
   renderTasksCount();
 }
@@ -178,16 +185,25 @@ function newTask() {
 
 
 addButton.addEventListener("click", function () {
-  addOneElement();
+
+  if (addMessage.value.trim()) {
+    const newTodo = newTask();
+    todoList.push(newTodo);
+    renderElement(newTodo, todoList.length - 1);
+    addMessage.value = ""; 
+  } else {
+    alert("Введите текст задачи!");
+  }
+
 });
 
 function displayAllElements() {
-    todo.innerHTML = todoList.map(function (item) {
-      return getTaskHTML(item);
+    todoList.forEach(function (item) {
+      // return getTaskHTML(item);
+      renderElement(item, item.id);
     })
-    .join("");
-
-  
+    ;
+   
   renderTasksCount();
 }
 
@@ -208,5 +224,4 @@ delAllButton.addEventListener("click", function () {
   allTasks.innerHTML = "Задач нет";
   todo.innerHTML = "";
 });
-
 
