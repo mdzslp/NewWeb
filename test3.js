@@ -135,7 +135,7 @@ function renderTasksCount() {
 
 
 
-function renderElement(item, id) {
+function renderElement(item, id) {  
   
   const li = document.createElement("li");
   li.innerHTML = getTaskHTML(item);
@@ -143,14 +143,30 @@ function renderElement(item, id) {
 
   addMessage.value = "";
  
-
   const editButton = document.getElementById(`eb_${id}`);
   const deleteButton = document.getElementById(`db_${id}`);
 
-  editButton.addEventListener('click', () => {
-    li.contentEditable = true // В разработке
-    
-  });
+    editButton.onclick = () => {
+      // В разработке
+    const label = li.querySelector("label");
+    label.contentEditable = true;
+    label.focus();
+
+    label.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            saveChanges();  
+        }
+    });
+
+    label.addEventListener("blur", function() {
+        saveChanges();
+    });
+
+    const saveChanges = () => {
+        label.contentEditable = false;
+        item.todo = label.innerText.trim();
+    };
+};
 
   deleteButton.onclick = (value) => {
     console.log("value", value)
@@ -158,7 +174,6 @@ function renderElement(item, id) {
     allTasks.textContent = `Всего задач: ${todoList.length} `;
     todo.removeChild(li);
        todoList.splice();
-      
   };
 
   renderTasksCount();
